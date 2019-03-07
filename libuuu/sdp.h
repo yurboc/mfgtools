@@ -154,7 +154,9 @@ public:
 
 		if (ack != status)
 		{
-			set_last_err_string("Status Miss matched");
+			char last_err_string[100];
+			snprintf(last_err_string, sizeof(last_err_string), "Status Miss matched (expect 0x%8X, got 0x%8X)", ack, status);
+			set_last_err_string(last_err_string);
 			return -1;
 		}
 		return 0;
